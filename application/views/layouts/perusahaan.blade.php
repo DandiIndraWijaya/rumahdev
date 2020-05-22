@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>ds</title>
+    <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
+
+    <title>ds</title>
 
     <style>
         .topnav {
@@ -71,7 +73,6 @@
             height: 100%;
             border: gainsboro 1px solid;
             margin: 10px 10px;
-            padding: 8px;
             border-radius: 8px;
             box-shadow: 0px 5px 5px #ccc;
         }
@@ -291,7 +292,9 @@
                 </div>
                    
                 <div class="col-sm-12 col-md-10 col-lg-10">
-                    @yield('content')
+                    <div class="content">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>
