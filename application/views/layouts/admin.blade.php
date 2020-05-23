@@ -139,7 +139,7 @@
 
         .btn-menu:hover{
             width: 100%;
-            height: 44px;
+            height: 40px;
             font-size: 19px;
             font-weight: bold;
         }
@@ -164,7 +164,7 @@
 
         .btn-submenu:hover{
             width: 100%;
-            height: 38px;
+            height: 32px;
             font-size: 14px;
             font-weight: bold;
         }
@@ -185,9 +185,13 @@
         }
 
         .footer{
-            margin-top: 10%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
             width: 100%;
             background-color: skyblue;
+            color: white;
+            text-align: center;
         }
 
         @media(max-width:900px){
@@ -229,7 +233,7 @@
           <a href="#about">About</a>
         </div>
     </div>
-
+    <div class="container-fluid">
         <div id="app">
             <div id="side-menucss" class="side-navcss">
                 <div>
@@ -292,18 +296,23 @@
                 </div>
                    
                 <div class="col-sm-12 col-md-10 col-lg-10">
+                    <div class="filter">
+                        @foreach ($filter as $f)
+                            <a href="{{ base_url($f->url) }}"><button class="btn-filter">{{ $f->title }}</button></a>
+                        @endforeach
+                    </div>
                     <div class="content">
                         @yield('content')
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
 
     <div class="footer">
         this is footer
     </div>
-
+        
     <script>
         function openSlideMenu() {
         document.getElementById('side-menucss').style.left = '0';

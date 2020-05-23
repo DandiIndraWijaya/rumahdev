@@ -293,6 +293,18 @@
                    
                 <div class="col-sm-12 col-md-10 col-lg-10">
                     <div class="content">
+                        <div class="filter">
+                            <?php
+                                $role = 3;
+                                if($role == 3){
+                                    $query = $this->db->query("SELECT * FROM url_filter WHERE role_id = $role");
+                                }
+                            ?>
+
+                            @foreach ($query->result() as $result)
+                                <a href="{{ base_url($result->url) }}"><button class="btn-filter">{{ $result->title }}</button></a>
+                            @endforeach
+                        </div>
                         @yield('content')
                     </div>
                 </div>

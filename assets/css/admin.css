@@ -1,5 +1,19 @@
+.title-admin{
+    color: grey; 
+    font-weight: bold
+}
+
+.subtitle-admin{
+    color: grey; 
+    font-weight: bold
+}
+
 .filter{
     margin: 5px 5px;
+}
+
+.subfilter{
+    color: grey;
 }
 
 .btn-filter{
@@ -14,7 +28,3 @@
     transition: width 0.5s, height 0.5s;
 }
 
-.btn-filter:hover{
-    font-size: 14px;
-    height: 25px;
-}

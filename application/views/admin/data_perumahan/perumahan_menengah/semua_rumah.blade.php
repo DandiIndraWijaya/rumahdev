@@ -1,18 +1,23 @@
-@extends('layouts.perusahaan')
+@extends('layouts.admin')
 
 @section('content')
-<div class="filter">
-    <button class="btn-filter">Rincian</button>
-    <button class="btn-filter">Semua Rumah</button>
-    <button class="btn-filter">Masih Tersedia</button>
-    <button class="btn-filter">Sudah Dimiliki</button>
-    <button class="btn-filter">Edit</button>
-</div>
+<?php
+ function rupiah($angka){
+	
+	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+ 
+} 
+?>
 <center >
-    <h3 style="color: grey; font-weight: bold">Perumahan Elit</h3>
-    <h4 style="color: grey; font-weight: bold">Semua Rumah</h4>
-    <font style="color: grey">filter : <a href="">Rumah Elit</a> <a href="">Rumah Menengah</a> <a href="">Rumah Murah</a></font>
+    <h3 class="title-admin">Perumahan Menengah</h3>
+
+    <font class="subfilter">filter : 
+        <a href="{{ base_url('index.php/admin/perumahanmenengah/semua_rumah') }}">Semua Tipe</a>,
+        <a href="{{ base_url('index.php/admin/perumahanmenengah/tipe_elit') }}">Tipe Elit</a>, 
+        <a href="{{ base_url('index.php/admin/perumahanmenengah/tipe_murah') }}">Tipe Murah</a>
 </center>
+    <br>
     <font style="margin-left: 5px; color:grey">filter berdasar : -</font>
     <table class="table">
         <thead>
@@ -30,7 +35,7 @@
                     <td>{{ $d->kode }}</td>
                     <td>{{ $d->lokasi }}</td>
                     <td>{{ $d->tipe }}</td>
-                    <td>{{ $d->harga }}</td>
+                    <td>{{ rupiah($d->harga) }}</td>
                 </tr>
             @endforeach
         </tbody>
