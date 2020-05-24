@@ -5,6 +5,7 @@ class PerumahanMenengah extends CI_Controller{
     public $title = "Admin: Perumahan Menengah";
     public $semua_rumah = "Semua Rumah";
     public $tersedia = "Masih Tersedia";
+    public $dimiliki = "Sudah Dimiliki";
 
     public function __construct()
     {
@@ -73,6 +74,36 @@ class PerumahanMenengah extends CI_Controller{
         $subfilter = "Tipe Murah";
 
          return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
+        
+    }
+
+    //Perumahan menengah sudah dimiliki
+    public function semua_rumah_dimiliki(){
+
+        $filter = $this->perumahanmenengahmodel->filter();
+        $data = $this->perumahanmenengahmodel->semua_dimilki();
+        $subfilter = "-";
+
+        return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter]);
+    }
+
+    public function tipe_elit_dimiliki(){
+
+        $filter = $this->perumahanmenengahmodel->filter();
+        $data = $this->perumahanmenengahmodel->tipe_elit_dimilki();
+        $subfilter = "Tipe Elit";
+
+       return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter]);
+        
+    }
+
+    public function tipe_murah_dimiliki(){
+
+        $filter = $this->perumahanmenengahmodel->filter();
+        $data = $this->perumahanmenengahmodel->tipe_murah_dimilki();
+        $subfilter = "Tipe Murah";
+
+        return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter]);
         
     }
 
