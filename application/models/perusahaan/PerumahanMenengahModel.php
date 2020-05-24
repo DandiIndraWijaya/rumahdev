@@ -22,6 +22,22 @@ class PerumahanMenengahModel extends CI_Model{
         return $query->result();
     }
 
+    //Perumahan menengah tersedia
+    function semua_tersedia(){
+        $query = $this->db->query("SELECT * FROM perumahan_menengah, tipe_perumahan_menengah WHERE id_tipe = tipe_perumahan_menengah.id AND kode NOT IN (SELECT kode_item FROM transaksi) OR kode IN (SELECT kode_item FROM transaksi WHERE aktif = 0)");
+        return $query->result();
+    }
+
+    function tipe_elit_tersedia(){
+        $query = $this->db->query("SELECT * FROM perumahan_menengah, tipe_perumahan_menengah WHERE id_tipe = tipe_perumahan_menengah.id AND id_tipe = 1 AND kode NOT IN (SELECT kode_item FROM transaksi) OR kode IN (SELECT kode_item FROM transaksi WHERE aktif = 0)");
+        return $query->result();
+    }
+
+    function tipe_murah_tersedia(){
+        $query = $this->db->query("SELECT * FROM perumahan_menengah, tipe_perumahan_menengah WHERE id_tipe = tipe_perumahan_menengah.id AND id_tipe = 2 AND kode NOT IN (SELECT kode_item FROM transaksi) OR kode IN (SELECT kode_item FROM transaksi WHERE aktif = 0)");
+        return $query->result();
+    }
+
 }
     
 ?>

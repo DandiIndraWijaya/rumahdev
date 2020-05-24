@@ -3,11 +3,13 @@
 class PerumahanMenengah extends CI_Controller{
 
     public $title = "Admin: Perumahan Menengah";
+    public $semua_rumah = "Semua Rumah";
+    public $tersedia = "Masih Tersedia";
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('admin/perumahanmenengahmodel');
+        $this->load->model('perusahaan/perumahanmenengahmodel');
     }
 
     public function index(){
@@ -18,16 +20,18 @@ class PerumahanMenengah extends CI_Controller{
 
         $filter = $this->perumahanmenengahmodel->filter();
         $data = $this->perumahanmenengahmodel->semua();
+        $subfilter = "-";
 
-        return view('admin/data_perumahan/perumahan_menengah/semua_rumah', ['data' => $data, 'title' => $this->title, 'filter' => $filter]);
+        return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter]);
     }
 
     public function tipe_elit(){
 
         $filter = $this->perumahanmenengahmodel->filter();
         $data = $this->perumahanmenengahmodel->tipe_elit();
+        $subfilter = "Tipe Elit";
 
-        return view('admin/data_perumahan/perumahan_menengah/tipe_elit', ['data' => $data, 'title' => $this->title, 'filter' => $filter]);
+        return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter]);
         
     }
 
@@ -35,8 +39,40 @@ class PerumahanMenengah extends CI_Controller{
 
         $filter = $this->perumahanmenengahmodel->filter();
         $data = $this->perumahanmenengahmodel->tipe_murah();
+        $subfilter = "Tipe Murah";
 
-        return view('admin/data_perumahan/perumahan_menengah/tipe_murah', ['data' => $data, 'title' => $this->title, 'filter' => $filter]);
+         return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter]);
+        
+    }
+
+
+    //Perumahan menengah tersedia
+    public function semua_rumah_tersedia(){
+
+        $filter = $this->perumahanmenengahmodel->filter();
+        $data = $this->perumahanmenengahmodel->semua_tersedia();
+        $subfilter = "-";
+
+        return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
+    }
+
+    public function tipe_elit_tersedia(){
+
+        $filter = $this->perumahanmenengahmodel->filter();
+        $data = $this->perumahanmenengahmodel->tipe_elit_tersedia();
+        $subfilter = "Tipe Elit";
+
+        return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
+        
+    }
+
+    public function tipe_murah_tersedia(){
+
+        $filter = $this->perumahanmenengahmodel->filter();
+        $data = $this->perumahanmenengahmodel->tipe_murah_tersedia();
+        $subfilter = "Tipe Murah";
+
+         return view('perusahaan/data_perumahan/perumahan_menengah/data_perumahanmenengah_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
         
     }
 

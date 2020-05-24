@@ -48,6 +48,28 @@ class PerumahanElitModel extends CI_Model{
         return $query->result();
     }
 
+    //Perumahan elit sudah dimiliki
+    function semua_dimilki(){
+        $query = $this->db->query("SELECT * FROM perumahan_elit, tipe_perumahan_elit WHERE id_tipe = tipe_perumahan_elit.id AND kode IN (SELECT kode_item FROM transaksi) AND kode IN (SELECT kode_item FROM transaksi WHERE aktif = 1)");
+        return $query->result();
+    }
+
+    function tipe_elit_dimilki(){
+        $query = $this->db->query("SELECT * FROM perumahan_elit, tipe_perumahan_elit WHERE id_tipe = tipe_perumahan_elit.id AND id_tipe = 1 AND kode IN (SELECT kode_item FROM transaksi) AND kode IN (SELECT kode_item FROM transaksi WHERE aktif = 1)");
+        return $query->result();
+    }
+
+    function tipe_menengah_dimilki(){
+        $query = $this->db->query("SELECT * FROM perumahan_elit, tipe_perumahan_elit WHERE id_tipe = tipe_perumahan_elit.id AND id_tipe = 2 AND kode IN (SELECT kode_item FROM transaksi) AND kode IN (SELECT kode_item FROM transaksi WHERE aktif = 1)");
+        return $query->result();
+    }
+
+    function tipe_murah_dimilki(){
+        $query = $this->db->query("SELECT * FROM perumahan_elit, tipe_perumahan_elit WHERE id_tipe = tipe_perumahan_elit.id AND id_tipe = 3 AND kode IN (SELECT kode_item FROM transaksi) AND kode IN (SELECT kode_item FROM transaksi WHERE aktif = 1)");
+        return $query->result();
+    }
+
+
 }
     
 ?>
