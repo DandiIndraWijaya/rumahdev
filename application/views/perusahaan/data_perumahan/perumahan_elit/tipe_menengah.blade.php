@@ -11,7 +11,7 @@
 
 <center >
     <h3 class="title-admin">Perumahan Elit</h3>
-
+    <h4 class="title-admin">Semua Rumah</h4>
     <font class="subfilter">filter : 
         <a href="{{ base_url('index.php/admin/perumahanelit/semua_rumah') }}">Semua Tipe</a>,
         <a href="{{ base_url('index.php/admin/perumahanelit/tipe_elit') }}">Tipe Elit</a>, 
@@ -20,7 +20,7 @@
     </font>
 </center>
 <br>
-    <font style="margin-left: 5px; color:grey">filter berdasar : Tipe Murah</font>
+    <font style="margin-left: 5px; color:grey">filter berdasar : Tipe Menengah</font>
     <table class="table">
         <thead>
             <tr>

@@ -296,12 +296,12 @@
                 </div>
                    
                 <div class="col-sm-12 col-md-10 col-lg-10">
-                    <div class="filter">
-                        @foreach ($filter as $f)
-                            <a href="{{ base_url($f->url) }}"><button class="btn-filter">{{ $f->title }}</button></a>
-                        @endforeach
-                    </div>
                     <div class="content">
+                        <div class="filter">
+                            @foreach ($filter as $f)
+                                <a href="{{ base_url($f->url) }}"><button class="btn-filter">{{ $f->title }}</button></a>
+                            @endforeach
+                        </div>
                         @yield('content')
                     </div>
                 </div>
