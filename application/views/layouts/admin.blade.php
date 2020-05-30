@@ -15,6 +15,9 @@
         .topnav {
             background-color: skyblue;
             overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
 
         /* Style the links inside the navigation bar */
@@ -22,7 +25,7 @@
             float: left;
             color: #f2f2f2;
             text-align: center;
-            padding: 14px 16px;
+            padding: 6px 16px;
             text-decoration: none;
             font-size: 17px;
         }
@@ -30,13 +33,14 @@
         /* Right-aligned section inside the top navigation */
         .topnav-right {
             float: right;
-        }
-
-        .contain{
-            left: ;
+            padding: 6px 16px;
         }
 
         #app{
+        }
+
+        .main{
+            margin-top: 70px;
         }
         
         .left{
@@ -185,7 +189,8 @@
         }
 
         .footer{
-            position: fixed;
+            margin-top: 100px;
+            overflow: hidden;
             left: 0;
             bottom: 0;
             width: 100%;
@@ -267,24 +272,7 @@
     <div id="lapisan2">
 
     </div>
-    <div class="topnav">
-        <span class="open-slidecss">
-            <a href="#" onclick="openSlideMenu()">
-                <svg width="30" height="30" >
-                    <path d="M0,5 30,5" stroke="grey" stroke-width="5" />
-                    <path d="M0,14 30,14" stroke="grey" stroke-width="5" />
-                    <path d="M0,23 30,23" stroke="grey" stroke-width="5" />
-                </svg>
-            </a>
-        </span>
-    <div class="logo">
-        <a href="#home"><font style="font-size: 28px">Rumah</font><span>dev</span></a>
-    </div>
-        <div class="topnav-right">
-          <a href="#search">Search</a>
-          <a href="#about">About</a>
-        </div>
-    </div>
+    
     <div class="container-fluid">
         <div id="app">
             <div id="side-menucss" class="side-navcss">
@@ -317,50 +305,70 @@
                     </center>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sm-2 col-md-2 col-lg-2">
-                    <div class="menu">
-                        <center>
-                            <div class="profil-card">   
-                                    <img src="<?= base_url('assets/perusahaan/anggota/dandi.jpg') ?>" class="foto-profil" width="75" height="75">
-                                    <br>
-                                    <div class="profil-name">
-                                        Dandi Indra Wijaya
+            
+            <div class="main">
+                <div class="row">
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <div class="menu">
+                            <center>
+                                <div class="profil-card">   
+                                        <img src="<?= base_url('assets/perusahaan/anggota/dandi.jpg') ?>" class="foto-profil" width="75" height="75">
+                                        <br>
+                                        <div class="profil-name">
+                                            Dandi Indra Wijaya
+                                        </div>
+                                </div>
+                                    <div>
+                                        <button class="btn-menu dropbtn" onclick="dropdown()">Produk</button>
                                     </div>
-                            </div>
-                                <div>
-                                    <button class="btn-menu dropbtn" onclick="dropdown()">Produk</button>
-                                </div>
-                                    <div id="Dropdown" class="dropdown-content1">
-                                        <button class="btn-submenu">Perumahan Elit</button>
-                                        <button class="btn-submenu">Perumahan Menengah</button>
-                                        <button class="btn-submenu">Apartemen</button>
+                                        <div id="Dropdown" class="dropdown-content1">
+                                            <button class="btn-submenu">Perumahan Elit</button>
+                                            <button class="btn-submenu">Perumahan Menengah</button>
+                                            <button class="btn-submenu">Apartemen</button>
+                                        </div>
+                                    <div>
+                                        <button class="btn-menu">Pembayaran</button>
                                     </div>
-                                <div>
-                                    <button class="btn-menu">Pembayaran</button>
-                                </div>
-                                <div>
-                                    <button class="btn-menu">Transaksi</button>
-                                </div>
-                            </center>
-                    </div>
-                </div>
-                   
-                <div class="col-sm-12 col-md-10 col-lg-10">
-                    <div class="content">
-                        <div class="filter">
-                            @foreach ($filter as $f)
-                                <a href="{{ base_url($f->url) }}"><button class="btn-filter">{{ $f->title }}</button></a>
-                            @endforeach
+                                    <div>
+                                        <button class="btn-menu">Transaksi</button>
+                                    </div>
+                                </center>
                         </div>
-                        @yield('content')
+                    </div>
+                       
+                    <div class="col-sm-12 col-md-10 col-lg-10">
+                        <div class="content">
+                            <div class="filter">
+                                @foreach ($filter as $f)
+                                    <a href="{{ base_url($f->url) }}"><button class="btn-filter">{{ $f->title }}</button></a>
+                                @endforeach
+                            </div>
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-
+    <div class="topnav">
+        <span class="open-slidecss">
+            <a href="#" onclick="openSlideMenu()">
+                <svg width="30" height="30" >
+                    <path d="M0,5 30,5" stroke="grey" stroke-width="5" />
+                    <path d="M0,14 30,14" stroke="grey" stroke-width="5" />
+                    <path d="M0,23 30,23" stroke="grey" stroke-width="5" />
+                </svg>
+            </a>
+        </span>
+    <div class="logo">
+        <a href="#home"><font style="font-size: 28px">Rumah</font><span>dev</span></a>
+    </div>
+        <div class="topnav-right">
+          <a href="#search">Search</a>
+          <a href="#about">About</a>
+        </div>
+    </div>
     <div class="footer">
         this is footer
     </div>
