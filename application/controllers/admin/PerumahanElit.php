@@ -135,6 +135,24 @@ class PerumahanElit extends CI_Controller{
         
     }
 
+    //Update data perumahan elit
+    public function update_perumahanelit(){
+        $filter = $this->perumahanelitmodel->filter();
+        $tipe_rumah = $this->perumahanelitmodel->tipe_rumah();
+
+        return view('perusahaan/data_perumahan/perumahan_elit/update_data_perumahanelit', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah]);
+    }
+
+    //Cari rumah untuk diupdate
+    public function cari_rumah(){
+        $filter = $this->perumahanelitmodel->filter();
+        $kode = $this->input->get("cari");
+        $hasil_cari = $this->perumahanelitmodel->cari_rumah($kode);
+        $tipe_rumah = $this->perumahanelitmodel->tipe_rumah();
+
+        return view('perusahaan/data_perumahan/perumahan_elit/update_data_perumahanelit', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah, 'hasil_cari' => $hasil_cari, 'kode' => $kode]);
+    }
+
 }
 
 ?>

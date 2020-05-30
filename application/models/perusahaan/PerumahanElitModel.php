@@ -69,6 +69,17 @@ class PerumahanElitModel extends CI_Model{
         return $query->result();
     }
 
+    //Tipe perumahan elit
+    function tipe_rumah(){
+        $query = $this->db->query("SELECT * FROM tipe_perumahan_elit");
+        return $query->result();
+    }
+
+    //Cari rumah
+    function cari_rumah($kode){
+        $query = $this->db->query("SELECT * FROM perumahan_elit, tipe_perumahan_elit WHERE  kode = '$kode' ");
+        return $query->row_array();
+    }
 
 }
     

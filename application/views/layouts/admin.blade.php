@@ -209,6 +209,58 @@
             .garis{display: none;}
         }
 
+        .btn-filter{
+            background-color: gainsboro;
+            color: grey;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn-filter:hover{
+            font-size: 14px;
+        }
+
+        .update-rumah{
+            margin: 5px;
+            color: grey;
+            margin-bottom: 5px;
+        }
+
+        .btn-update{
+            color: white;
+            font-size: 14px;
+            transition: width 0.3s, height 0.3s;
+            height: 25px;
+            width: 70px;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        .btn-update:hover{
+            font-size: 16px;
+            height: 30px;
+            width: 75px;
+        }
+
+        .input{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .card{
+            margin: 20px;
+            border-bottom: gainsboro 1px solid;
+            border-top: gainsboro 1px solid;
+            border-right: gainsboro 1px solid;
+            border-radius: 8px;
+            box-shadow: 0px 5px 5px #ccc;
+        }
     </style>
 </head>
 <body>
