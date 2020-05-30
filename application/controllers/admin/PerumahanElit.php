@@ -164,6 +164,7 @@ class PerumahanElit extends CI_Controller{
         $hasil_cari = $this->perumahanelitmodel->cari_rumah($kode);
         $tipe_rumah = $this->perumahanelitmodel->tipe_rumah();
 
+        
         return view('perusahaan/data_perumahan/perumahan_elit/update_data_perumahanelit', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah, 'hasil_cari' => $hasil_cari, 'kode' => $kode]);
     }
 
@@ -185,6 +186,8 @@ class PerumahanElit extends CI_Controller{
     //Hapus rumah
     public function hapus(){
         $kode = $this->input->get('kode_hapus');
+        
+        $this->perumahanelitmodel->hapus($kode);
         
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data rumah dengan kode '
         . $kode. ' berhasil dihapus!</div>');

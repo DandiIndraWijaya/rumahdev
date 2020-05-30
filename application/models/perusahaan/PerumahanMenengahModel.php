@@ -54,6 +54,50 @@ class PerumahanMenengahModel extends CI_Model{
         return $query->result();
     }
 
+    //Tipe perumahan menengah
+    function tipe_rumah(){
+        $query = $this->db->query("SELECT * FROM tipe_perumahan_menengah");
+        return $query->result();
+    }
+
+    //Tambah rumah
+    function tambah_rumah($kode, $lokasi, $tipe){
+        $data = [
+            'kode' => $kode,
+            'lokasi' => $lokasi,
+            'id_tipe' => $tipe
+        ];
+
+        $this->db->insert('perumahan_menengah', $data);
+    }
+
+    //Cari rumah
+    function cari_rumah($kode){
+        $query = $this->db->query("SELECT * FROM perumahan_menengah, tipe_perumahan_menengah WHERE  kode = '$kode' ");
+        return $query->row_array();
+    }
+
+    //Update
+    function update($kode, $lokasi, $tipe){
+        $this->db->query("UPDATE perumahan_menengah SET kode= '$kode' , lokasi = '$lokasi', id_tipe = $tipe WHERE kode = '$kode'");
+    }
+
+    //Hapus
+    function hapus($kode){
+        $this->db->query("DELETE FROM perumahan_menengah WHERE kode = '$kode'");
+    }
+
+    //Ubah harga
+    function ubah_harga($elit, $menengah, $murah){
+        if(!empty($elit)){
+            $this->db->query("UPDATE tipe_perumahan_menengah SET harga = $elit WHERE tipe = 'elit'");
+        }
+
+        if(!empty($murah)){
+            $this->db->query("UPDATE tipe_perumahan_menengah SET harga = $murah WHERE tipe = 'murah'");
+        }    
+    }
+
 }
     
 ?>
