@@ -297,6 +297,9 @@
                                 <button class="btn-submenu">Apartemen</button>
                             </div>
                         <div>
+                            <button class="btn-menu">Konsumen</button>
+                        </div>
+                        <div>
                             <button class="btn-menu">Pembayaran</button>
                         </div>
                         <div>
@@ -327,10 +330,13 @@
                                             <button class="btn-submenu">Apartemen</button>
                                         </div>
                                     <div>
+                                        <button class="btn-menu">Konsumen</button>
+                                    </div>
+                                    <div>
                                         <button class="btn-menu">Pembayaran</button>
                                     </div>
                                     <div>
-                                        <button class="btn-menu">Transaksi</button>
+                                        <a href="{{ base_url('index.php/admin/transaksi/kredit') }}"><button class="btn-menu">Transaksi</button></a>
                                     </div>
                                 </center>
                         </div>

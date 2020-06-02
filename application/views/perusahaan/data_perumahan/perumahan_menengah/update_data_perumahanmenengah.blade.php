@@ -82,6 +82,12 @@
                                 <input class="input btn-update" style="background-color: #5bc0de;" type="submit" value="Ubah">
                         </form>
                         @endif
+                        @if(!empty($kode))
+                        <strong>
+                            <center>Tidak ada rumah dengan kode {{ $kode }}</center>
+                        </strong>
+                    @endif
+
                 </div>
             </div>
         </div>
