@@ -30,7 +30,7 @@
                             <font style="text-decoration: underline">Tambah Rumah</font>
                         </strong>
                     </div>
-                    <form action="{{ base_url('index.php/admin/perumahanelit/tambah_rumah') }}" method="get">
+                    <form action="{{ base_url('index.php/admin/perumahanelit/tambah_rumah') }}" method="post">
                         <input type="text" class="input" name="kode" placeholder="Ketik kode rumah baru"><br>
                         <input type="text" class="input" name="lokasi" placeholder="Ketik alamat rumah baru"><br>
                         <div class="input">

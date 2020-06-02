@@ -15,6 +15,14 @@
     <font class="subfilter">
 </center>
     <hr>
+    <hr>
+    <center>
+        <?php
+            if(!empty($_SESSION['message'])){
+                    echo $_SESSION['message'];
+            }
+        ?>
+    </center>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
@@ -22,12 +30,12 @@
                     <div>
                         <center>
                             <strong>
-                                <h4 style="font-weight: bold">Kredit Awal</h4>
+                                <h4 style="font-weight: bold">Transaksi Kredit</h4>
                             </strong>
                         </center>
                     </div>
         
-                    <form action="{{ base_url('index.php/admin/pembayaran/kredit_awal') }}" method="post">
+                    <form action="{{ base_url('index.php/admin/pembayaran/transaksi_kredit') }}" method="post">
                         <strong>Konsumen:</strong> <br><input type="text" class="input" name="konsumen" placeholder="Ketik id konsumen" required><br>
                         <strong>Kode Item: </strong> <br><input type="text" class="input" name="kode_item" placeholder="Ketik kode item" required><br>
                         <div class="input">
@@ -38,6 +46,18 @@
                                 @endforeach
                             </select>
                         </div>
+                        <input class="input btn-update" style="background-color: #5bc0de;" type="submit" value="Simpan">
+                    </form>
+                    <div>
+                        <center>
+                            <strong>
+                                <h4 style="font-weight: bold">Kredit Awal</h4>
+                            </strong>
+                        </center>
+                    </div>
+                    <form action="{{ base_url('index.php/admin/pembayaran/kredit_awal') }}" method="post">
+                        <strong>Konsumen:</strong> <br><input type="text" class="input" name="konsumen" placeholder="Ketik id konsumen" required><br>
+                        <strong>Kode Item: </strong> <br><input type="text" class="input" name="kode_item" placeholder="Ketik kode item" required><br>
                         <div class="input">
                             <strong>Lama Angsuran: </strong>
                             <input type="number" name="lama_angsuran" style="width: 40px" required>
@@ -67,14 +87,6 @@
                     <form action="" method="post">
                         <strong>Konsumen:</strong> <br><input type="text" class="input" name="konsumen" placeholder="Ketik id konsumen" required><br>
                         <strong>Kode Item: </strong> <br><input type="text" class="input" name="kode_item" placeholder="Ketik kode item" required><br>
-                        <div class="input">
-                            <strong>Kategori: </strong>
-                            <select name="kategori">
-                                @foreach ($kategori as $k)
-                                    <option value="{{ $k->id }}">{{ $k->kategori }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="input">
                             <strong>Lama Angsuran: </strong>
                             <input type="number" name="lama_angsuran" style="width: 40px" required>
