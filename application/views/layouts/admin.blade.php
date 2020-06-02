@@ -266,6 +266,12 @@
             border-radius: 8px;
             box-shadow: 0px 5px 5px #ccc;
         }
+
+        .pembayaran{
+            margin: 5px;
+            color: grey;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -333,7 +339,7 @@
                                         <button class="btn-menu">Konsumen</button>
                                     </div>
                                     <div>
-                                        <button class="btn-menu">Pembayaran</button>
+                                        <a href="{{ base_url('index.php/admin/pembayaran/kredit') }}"><button class="btn-menu">Pembayaran</button></a>
                                     </div>
                                     <div>
                                         <a href="{{ base_url('index.php/admin/transaksi/kredit') }}"><button class="btn-menu">Transaksi</button></a>

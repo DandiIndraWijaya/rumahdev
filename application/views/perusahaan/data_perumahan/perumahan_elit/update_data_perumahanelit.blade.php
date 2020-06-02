@@ -63,7 +63,7 @@
                         </form>
 
                         @if (!empty($hasil_cari))
-                        <form action="{{ base_url('index.php/admin/perumahanelit/update') }}" method="get">
+                        <form action="{{ base_url('index.php/admin/perumahanelit/update') }}" method="post">
                                 <input type="text" name="kode1" value="{{ $kode }}" hidden>
                                 <input type="text" class="input" name="kode" value="{{ $hasil_cari['kode'] }}" required><br>
                                 <input type="text" class="input" name="lokasi"value="{{ $hasil_cari['lokasi'] }}"  placeholder="Ketik alamat rumah baru" required><br>
@@ -102,7 +102,7 @@
                             <font style="text-decoration: underline">Hapus Rumah</font>
                         </strong>
                     </div>
-                    <form action="{{ base_url('index.php/admin/perumahanelit/hapus') }}" method="get">
+                    <form action="{{ base_url('index.php/admin/perumahanelit/hapus') }}" method="post">
                         <input type="text" class="input" name="kode_hapus" placeholder="Ketik kode rumah"><br>
                         <input class="input btn-update" style="background-color: #d9534f;" type="submit" value="Hapus">
                     </form>
@@ -118,7 +118,7 @@
                             <font style="text-decoration: underline">Ubah Harga Tipe</font>
                         </strong>
                     </div>
-                    <form action="{{ base_url('index.php/admin/perumahanelit/ubah_harga') }}" method="get">
+                    <form action="{{ base_url('index.php/admin/perumahanelit/ubah_harga') }}" method="post">
                         @php
                             $id = 1;    
                         @endphp

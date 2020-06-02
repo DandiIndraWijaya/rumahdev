@@ -145,9 +145,9 @@ class PerumahanElit extends CI_Controller{
 
     //Tambah rumah
     public function tambah_rumah(){
-        $kode = $this->input->get('kode');
-        $lokasi = $this->input->get('lokasi');
-        $tipe = $this->input->get('tipe');
+        $kode = $this->input->post('kode');
+        $lokasi = $this->input->post('lokasi');
+        $tipe = $this->input->post('tipe');
 
         $this->perumahanelitmodel->tambah_rumah($kode, $lokasi, $tipe);
 
@@ -170,10 +170,10 @@ class PerumahanElit extends CI_Controller{
 
     //Update rumah
     public function update(){
-        $kode1 = $this->input->get('kode1');
-        $kode = $this->input->get('kode');
-        $lokasi = $this->input->get('lokasi');
-        $tipe = $this->input->get('tipe');
+        $kode1 = $this->input->post('kode1');
+        $kode = $this->input->post('kode');
+        $lokasi = $this->input->post('lokasi');
+        $tipe = $this->input->post('tipe');
 
         $this->perumahanelitmodel->update($kode, $lokasi, $tipe);
 
@@ -185,7 +185,7 @@ class PerumahanElit extends CI_Controller{
 
     //Hapus rumah
     public function hapus(){
-        $kode = $this->input->get('kode_hapus');
+        $kode = $this->input->post('kode_hapus');
         
         $this->perumahanelitmodel->hapus($kode);
         
@@ -197,9 +197,9 @@ class PerumahanElit extends CI_Controller{
 
     //Ubah harga
     public function ubah_harga(){
-        $elit = $this->input->get('tipe_elit');
-        $menengah = $this->input->get('tipe_menengah');
-        $murah = $this->input->get('tipe_murah');
+        $elit = $this->input->post('tipe_elit');
+        $menengah = $this->input->post('tipe_menengah');
+        $murah = $this->input->post('tipe_murah');
 
         $this->perumahanelitmodel->ubah_harga($elit, $menengah, $murah);
 
