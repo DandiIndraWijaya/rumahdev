@@ -34,7 +34,8 @@
                         </center>
                     </div>
         
-                    <form action="{{ base_url('index.php/admin/pembayaran/transaksi_kredit') }}" method="post">
+                    <form action="{{ base_url('index.php/admin/pembayaran/transaksi') }}" method="post">
+                        <input type="text" name="metode" value="1" hidden>
                         <strong>Konsumen:</strong> <br><input type="text" class="input" name="konsumen" placeholder="Ketik id konsumen" required><br>
                         <strong>Kode Item: </strong> <br><input type="text" class="input" name="kode_item" placeholder="Ketik kode item" required><br>
                         <div class="input">
@@ -95,7 +96,7 @@
                     ?>
                      <center>
                         <strong>
-                            <h4 style="font-weight: bold">Angsuran Berhasil Disimpan</h4>
+                            <h4 style="font-weight: bold">Data Angsuran Berhasil Disimpan</h4>
                         </strong>
                     </center>
                         <table class="table">

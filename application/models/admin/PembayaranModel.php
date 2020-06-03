@@ -21,7 +21,7 @@ class PembayaranModel extends CI_Model{
         return $query->result();
     }
 
-    function insert_transaksi_kredit($id_konsumen, $kode_item, $metode_pembayaran, $kategori, $aktif){
+    function insert_transaksi($id_konsumen, $kode_item, $metode_pembayaran, $kategori, $aktif){
 
         $data_transaksi = [
             'id_konsumen' => $id_konsumen,
@@ -125,6 +125,26 @@ class PembayaranModel extends CI_Model{
         $query = $this->db->query("UPDATE kredit SET angsuran_ke = $angsuran_ke, telah_bayar = telah_bayar + $uang, sisa_bayar = sisa_bayar - $uang WHERE id = $id_kredit");
     }
 
+    function transaksi($id_konsumen, $kode_item){
+        $query = $this->db->query("SELECT * FROM transaksi WHERE id_konsumen = $id_konsumen AND kode_item = '$kode_item'");
+
+        return $query->row_array();
+    }
+
+    function bayar_tunai($id_transaksi, $uang){
+        $data_transaksi_tunai = [
+            'id_transaksi' => $id_transaksi,
+            'harga' => $uang
+        ];
+
+        $this->db->set('kode_bukti_pembayaran', 'UUID()', FALSE);
+        $this->db->insert('tunai', $data_transaksi_tunai);
+    }
+
+    function bukti_pembayaran_tunai($id_transaksi){
+        $query = $this->db->query("SELECT * FROM tunai WHERE id_transaksi = $id_transaksi");
+        return $query->row_array();
+    }
 
 }
 
