@@ -91,7 +91,7 @@
             border-right: gainsboro 1px solid;
             border-radius: 8px;
             box-shadow: 0px 5px 5px #ccc;
-            height: 120px;
+            height: 150px;
             
         }
 
@@ -287,11 +287,15 @@
                     <div style="margin-bottom: 8px; background-color: skyblue">
                         <a style="text-decoration: none;" href="#home"><font style="font-size: 28px; color: white">Rumah<span>dev</span></font></a>
                     </div>
-                    <div class="profil-card">   
+                    <div class="profil-card">
+                        <br>
+                        Administrator <br>   
                             <img src="<?= base_url('assets/perusahaan/anggota/dandi.jpg') ?>" class="foto-profil" width="75" height="75">
                             <br>
                             <div class="profil-name">
                                 Dandi Indra Wijaya
+                                <hr>
+                                Administrator
                             </div>
                     </div>
                         <div>
@@ -320,11 +324,13 @@
                     <div class="col-sm-2 col-md-2 col-lg-2">
                         <div class="menu">
                             <center>
-                                <div class="profil-card">   
+                                <div class="profil-card">
+                                    <br>
+                                    Administrator <br> 
                                         <img src="<?= base_url('assets/perusahaan/anggota/dandi.jpg') ?>" class="foto-profil" width="75" height="75">
                                         <br>
                                         <div class="profil-name">
-                                            Dandi Indra Wijaya
+                                            Dandi Indra Wijaya 
                                         </div>
                                 </div>
                                     <div>
@@ -336,7 +342,7 @@
                                             <button class="btn-submenu">Apartemen</button>
                                         </div>
                                     <div>
-                                        <button class="btn-menu">Konsumen</button>
+                                        <a href="{{ base_url('index.php/admin/konsumen/') }}"><button class="btn-menu">Konsumen</button></a>
                                     </div>
                                     <div>
                                         <a href="{{ base_url('index.php/admin/pembayaran/kredit') }}"><button class="btn-menu">Pembayaran</button></a>
