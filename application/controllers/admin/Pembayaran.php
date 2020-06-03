@@ -65,6 +65,27 @@ class Pembayaran extends CI_Controller{
         redirect('admin/pembayaran/kredit');
     }
 
+    public function angsuran(){
+        $id_konsumen = $this->input->post('konsumen');
+        $kode_item = $this->input->post('kode_item');
+        $uang = $this->input->post('uang');
+
+        $kredit = $this->pembayaranmodel->cari_id_kredit($id_konsumen, $kode_item);
+        $id_kredit = $kredit['id_kredit'];
+        $angsuran_ke = $kredit['angsuran_ke'];
+
+        $this->pembayaranmodel->transaksi_kredit($id_kredit, $angsuran_ke);
+        $bukti_pembayaran = $this->pembayaranmodel->bukti_pembayaran($id_kredit, $angsuran_ke);
+        $kode_bukti = $bukti_pembayaran['kode_bukti_pembayaran'];
+
+        $this->pembayaranmodel->pembayaran($kode_bukti, $uang);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Angsuran Berhasil disimpan</div>');
+        
+        redirect('admin/pembayaran/kredit');
+
+    }
+
 }
 
 ?>

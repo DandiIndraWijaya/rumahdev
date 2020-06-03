@@ -15,7 +15,6 @@
     <font class="subfilter">
 </center>
     <hr>
-    <hr>
     <center>
         <?php
             if(!empty($_SESSION['message'])){
@@ -79,23 +78,15 @@
                     <div>
                         <center>
                             <strong>
-                                <h4 style="font-weight: bold">Angsuran</h4>
+                                <h4 style="font-weight: bold">Bayar Angsuran</h4>
                             </strong>
                         </center>
                     </div>
         
-                    <form action="" method="post">
+                    <form action="{{ base_url('index.php/admin/pembayaran/angsuran') }}" method="post">
                         <strong>Konsumen:</strong> <br><input type="text" class="input" name="konsumen" placeholder="Ketik id konsumen" required><br>
                         <strong>Kode Item: </strong> <br><input type="text" class="input" name="kode_item" placeholder="Ketik kode item" required><br>
-                        <div class="input">
-                            <strong>Lama Angsuran: </strong>
-                            <input type="number" name="lama_angsuran" style="width: 40px" required>
-                            <select name="periode">
-                                <option value="bulan">Bulan</option>
-                                <option value="tahun">Tahun</option>
-                            </select>
-                        </div>
-                        <strong>Uang Muka: </strong><input type="text" class="input" name="uang_muka" placeholder="Ketik nominal uang muka" required><br>
+                        <strong>Uang: </strong><input type="text" class="input" name="uang" placeholder="Ketik nominal uang" required><br>
                         <input class="input btn-update" style="background-color: #5cb85c;" type="submit" value="Simpan">
                     </form>
                 </div>

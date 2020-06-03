@@ -66,7 +66,7 @@ class PembayaranModel extends CI_Model{
             'lama_angsuran' => $lama_angsuran2,
             'nominal_pembayaran' => $nominal_pembayaran,
             'jumlah_angsuran' => $jumlah_angsuran,
-            'angsuran_ke' => 0,
+            'angsuran_ke' => 1,
             'telah_bayar' => 0,
             'sisa_bayar' => $sisa_harga
         ];
@@ -75,6 +75,45 @@ class PembayaranModel extends CI_Model{
         if(!$insert){
             echo "ERROR Insert kredit awal";
         }
+    }
+
+    function cari_id_kredit($id_konsumen, $kode_item){
+        $query_id_transaksi = $this->db->query("SELECT * FROM transaksi WHERE id_konsumen = $id_konsumen AND kode_item = '$kode_item'")->row_array();
+
+        $id_transaksi = $query_id_transaksi['id'];
+
+        $query_kredit = $this->db->query("SELECT * FROM kredit WHERE id_transaksi = $id_transaksi")->row_array();
+
+        $id_kredit = $query_kredit['id'];
+        $angsuran_ke = $query_kredit['angsuran_ke'];
+
+        return ['id_kredit' => $id_kredit, 'angsuran_ke' => $angsuran_ke];
+    }
+
+    function transaksi_kredit($id_kredit, $angsuran_ke){
+        $data_transaksi_kredit = [
+            'id_kredit' => $id_kredit,
+            'angsuran_ke' => $angsuran_ke,
+            'kode_bukti_pembayaran' => UUID()
+        ];
+
+        $this->db->insert('transaksi_kredit', $data_transaksi_kredit);
+
+    }
+
+    function bukti_pembayaran($id_kredit, $angsuran_ke){
+        $query = $this->db->query("SELECT kode_bukti_pembayaran FROM transaksi_kredit WHERE id_kredit = $id_kredit AND angsuran_ke = $angsuran_ke");
+
+        return $query->row_array();
+    }
+
+    function pembayaran($kode_bukti, $uang){
+        $data_pembayaran = [
+            'kode_bukti_pembayaran' => $kode_bukti,
+            'jumlah_pembayaran' => $uang
+        ];
+
+        $this->db->insert('pembayaran', $data_pembayaran);
     }
 
 
