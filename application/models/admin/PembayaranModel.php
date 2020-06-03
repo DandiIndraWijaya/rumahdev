@@ -22,7 +22,6 @@ class PembayaranModel extends CI_Model{
     }
 
     function insert_transaksi($id_konsumen, $kode_item, $metode_pembayaran, $kategori, $aktif){
-
         $data_transaksi = [
             'id_konsumen' => $id_konsumen,
             'kode_item' => $kode_item,
@@ -144,6 +143,30 @@ class PembayaranModel extends CI_Model{
     function bukti_pembayaran_tunai($id_transaksi){
         $query = $this->db->query("SELECT * FROM tunai WHERE id_transaksi = $id_transaksi");
         return $query->row_array();
+    }
+
+    function bayar_sewa($id_transaksi, $uang){
+        $data_transaksi_tunai = [
+            'id_transaksi' => $id_transaksi,
+            'harga' => $uang,
+        ];
+        $this->db->set('tanggal_berakhir_sewa', 'CURDATE()', FALSE);
+        $this->db->set('kode_bukti_pembayaran', 'UUID()', FALSE);
+        $this->db->insert('sewa', $data_transaksi_tunai);
+    }
+
+    function bukti_pembayaran_sewa($id_transaksi){
+        $query = $this->db->query("SELECT * FROM sewa WHERE id_transaksi = $id_transaksi");
+        $result = $query->row_array();
+        $kode_bukti = $result['kode_bukti_pembayaran'];
+        
+        $this->db->query("UPDATE sewa SET tanggal_berakhir_sewa = DATE_ADD(`tanggal_berakhir_sewa` , INTERVAL 1 YEAR) WHERE kode_bukti_pembayaran = '$kode_bukti'");
+
+        $query1 = $this->db->query("SELECT * FROM sewa WHERE id_transaksi = $id_transaksi");
+        $result1 = $query1->row_array();
+        $tanggal_berakhir = $result1['tanggal_berakhir_sewa'];
+
+        return [$kode_bukti, $tanggal_berakhir];
     }
 
 }

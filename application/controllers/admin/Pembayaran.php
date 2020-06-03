@@ -22,18 +22,28 @@ class Pembayaran extends CI_Controller{
 
     public function transaksi(){
         $filter = $this->pembayaranmodel->filter();
-
+        if(!empty($this->input->post('kategori'))){
+            $kategori = $this->input->post('kategori');
+        }else{
+            $kategori = 3;
+        }
         $id_konsumen = $this->input->post('konsumen');
         $kode_item = $this->input->post('kode_item');
         $metode_pembayaran = $this->input->post('metode');
-        $kategori = $this->input->post('kategori');
         $aktif = 1;
         
         $this->pembayaranmodel->insert_transaksi($id_konsumen, $kode_item, $metode_pembayaran, $kategori, $aktif);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data transaksi  berhasil disimpan!</div>');
         
-        redirect('admin/pembayaran/kredit');
+        if($this->input->post('metode') == 1){
+            redirect('admin/pembayaran/kredit');
+        }elseif($this->input->post('metode') == 2){
+            redirect('admin/pembayaran/tunai');
+        }else{
+            redirect('admin/pembayaran/sewa');
+        }
+       
     }
 
     public function kredit_awal(){
@@ -129,7 +139,7 @@ class Pembayaran extends CI_Controller{
         $konsumen = $this->pembayaranmodel->konsumen($id_konsumen); 
         $nama_konsumen = $konsumen['nama_konsumen'];
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Transaksi Tunai berhasil disimpan!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pembayaran tunai berhasil!</div>');
         
         $this->session->set_flashdata('id', $id_konsumen);
         $this->session->set_flashdata('nama_konsumen', $nama_konsumen);
@@ -142,6 +152,45 @@ class Pembayaran extends CI_Controller{
 
         redirect('admin/pembayaran/tunai');
 
+    }
+
+    public function sewa(){
+        $filter = $this->pembayaranmodel->filter();
+
+        return view('admin/pembayaran/bayar_sewa', ['title' => $this->title, 'filter' => $filter, 'c_filter' => $this->kredit]);
+    }
+
+    public function bayar_sewa(){
+        $filter = $this->pembayaranmodel->filter();
+        $id_konsumen = $this->input->post('konsumen');
+        $kode_item = $this->input->post('kode_item');
+        $uang = $this->input->post('uang');
+
+        $transaksi = $this->pembayaranmodel->transaksi($id_konsumen, $kode_item);
+        $id_transaksi = $transaksi['id'];
+
+        $this->pembayaranmodel->bayar_sewa($id_transaksi, $uang);
+        $bukti  = $this->pembayaranmodel->bukti_pembayaran_sewa($id_transaksi);
+        $kode_bukti = $bukti[0];
+        $tanggal_berakhir = $bukti[1];
+        $this->pembayaranmodel->pembayaran($kode_bukti, $uang);
+
+        $konsumen = $this->pembayaranmodel->konsumen($id_konsumen); 
+        $nama_konsumen = $konsumen['nama_konsumen'];
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pembayaran Sewa berhasil!</div>');
+        
+        $this->session->set_flashdata('id', $id_konsumen);
+        $this->session->set_flashdata('nama_konsumen', $nama_konsumen);
+        $this->session->set_flashdata('kode_item', $kode_item);
+        $this->session->set_flashdata('kode_bukti', $kode_bukti);
+        $this->session->set_flashdata('uang', $uang);
+        $this->session->set_flashdata('tanggal_berakhir', $tanggal_berakhir);
+        $this->session->set_flashdata('c_filter', $this->kredit);
+        $this->session->set_flashdata('filter', $filter);
+        $this->session->set_flashdata('title', $this->title);
+
+        redirect('admin/pembayaran/sewa');
     }
 
 }
