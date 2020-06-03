@@ -89,6 +89,44 @@
                         <strong>Uang: </strong><input type="text" class="input" name="uang" placeholder="Ketik nominal uang" required><br>
                         <input class="input btn-update" style="background-color: #5cb85c;" type="submit" value="Simpan">
                     </form>
+                    <hr>
+                    <?php
+                        if(!empty($_SESSION['kode_bukti'])){
+                    ?>
+                     <center>
+                        <strong>
+                            <h4 style="font-weight: bold">Angsuran Berhasil Disimpan</h4>
+                        </strong>
+                    </center>
+                        <table class="table">
+                            <tr>
+                                <td>Id Konsumen : </td>
+                                <td>{{ $_SESSION['id'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Nama Konsumen : </td>
+                                <td>{{ $_SESSION['nama_konsumen'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Kode Item : </td>
+                                <td>{{ $_SESSION['kode_item'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Uang : </td>
+                                <td>{{ rupiah($_SESSION['uang']) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Angsuran Ke : </td>
+                                <td>{{ $_SESSION['angsuran_ke'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Kode Bukti : </td>
+                                <td>{{ $_SESSION['kode_bukti'] }}</td>
+                            </tr>
+                        </table>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>

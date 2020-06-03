@@ -5,6 +5,11 @@ class PembayaranModel extends CI_Model{
         $query = $this->db->query("SELECT * FROM link_url WHERE filter_ = 'pembayaran' ");
         return $query->result();
     }
+    
+    function konsumen($id_konsumen){
+        $query = $this->db->query("SELECT * FROM konsumen WHERE id = $id_konsumen");
+        return $query->row_array();
+    }
 
     function metode_pembayaran(){
         $query = $this->db->query("SELECT * FROM metode_pembayaran");
@@ -66,7 +71,7 @@ class PembayaranModel extends CI_Model{
             'lama_angsuran' => $lama_angsuran2,
             'nominal_pembayaran' => $nominal_pembayaran,
             'jumlah_angsuran' => $jumlah_angsuran,
-            'angsuran_ke' => 1,
+            'angsuran_ke' => 0,
             'telah_bayar' => 0,
             'sisa_bayar' => $sisa_harga
         ];
@@ -94,9 +99,9 @@ class PembayaranModel extends CI_Model{
         $data_transaksi_kredit = [
             'id_kredit' => $id_kredit,
             'angsuran_ke' => $angsuran_ke,
-            'kode_bukti_pembayaran' => UUID()
         ];
 
+        $this->db->set('kode_bukti_pembayaran', 'UUID()', FALSE);
         $this->db->insert('transaksi_kredit', $data_transaksi_kredit);
 
     }
@@ -114,6 +119,10 @@ class PembayaranModel extends CI_Model{
         ];
 
         $this->db->insert('pembayaran', $data_pembayaran);
+    }
+
+    function update_kredit($angsuran_ke, $uang, $id_kredit){
+        $query = $this->db->query("UPDATE kredit SET angsuran_ke = $angsuran_ke, telah_bayar = telah_bayar + $uang, sisa_bayar = sisa_bayar - $uang WHERE id = $id_kredit");
     }
 
 
