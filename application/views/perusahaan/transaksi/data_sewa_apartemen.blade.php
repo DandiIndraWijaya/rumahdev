@@ -25,6 +25,7 @@
                     <th>Kategori</th>
                     <th>Harga</th>
                     <th>Tanggal Berakhir Sewa</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
     
@@ -37,6 +38,9 @@
                         <td>{{ $d->kategori }}</td>
                         <td>{{ rupiah($d->harga) }}</td>
                         <td>{{ $d->tanggal_berakhir_sewa }}</td>
+                        <td> <th><form action="" method="post">
+                            <input class="input btn-update" style="background-color: #d9534f;" type="submit" value="Non Aktifkan">    
+                        </form></th></td>
                     </tr>
                 @endforeach
             </tbody>

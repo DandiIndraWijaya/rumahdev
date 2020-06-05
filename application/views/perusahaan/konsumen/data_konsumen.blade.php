@@ -5,6 +5,10 @@
     <h3 class="title-admin">Konsumen</h3>
     <h4 class="title-admin">{{ $c_filter }}</h4>
     <font class="subfilter">
+        <form action="" method="get">
+            <input type="text" placeholder="Ketik id konsumen">
+            <input type="submit" value="Cari">
+        </form>
 </center>
     <br>
     <table class="table">

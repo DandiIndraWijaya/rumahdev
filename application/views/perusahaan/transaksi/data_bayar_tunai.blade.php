@@ -24,6 +24,7 @@
                     <th>Kode Item</th>
                     <th>Kategori</th>
                     <th>Harga</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
     
@@ -35,6 +36,9 @@
                         <td>{{ $d->kode_item }}</td>
                         <td>{{ $d->kategori }}</td>
                         <td>{{ rupiah($d->harga) }}</td>
+                        <th><form action="" method="post">
+                            <input class="input btn-update" style="background-color: #d9534f;" type="submit" value="Non Aktifkan">    
+                        </form></th>
                     </tr>
                 @endforeach
             </tbody>

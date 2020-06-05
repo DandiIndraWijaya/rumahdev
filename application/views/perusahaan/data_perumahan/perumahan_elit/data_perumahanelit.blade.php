@@ -20,6 +20,10 @@
 </center>
     <br>
     <font style="margin-left: 5px; color:grey">filter berdasar : {{ $subfilter }}</font>
+    <form action="" method="get">
+        <input type="text" placeholder="Ketik kode item">
+        <input type="submit" value="Cari">
+    </form>
     <table class="table">
         <thead>
             <tr>

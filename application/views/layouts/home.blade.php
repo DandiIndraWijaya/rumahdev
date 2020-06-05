@@ -7,14 +7,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/home.css') ?>">
 
-    <title>{{ $title }}</title>
+    <title>{{ $tab }}</title>
 
     <style>
         .topnav {
             background-color: skyblue;
             overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
 
         /* Style the links inside the navigation bar */
@@ -22,7 +25,7 @@
             float: left;
             color: #f2f2f2;
             text-align: center;
-            padding: 14px 16px;
+            padding: 6px 16px;
             text-decoration: none;
             font-size: 17px;
         }
@@ -30,13 +33,11 @@
         /* Right-aligned section inside the top navigation */
         .topnav-right {
             float: right;
+            padding: 6px 16px;
         }
 
-        .contain{
-            left: ;
-        }
-
-        #app{
+        .main{
+            margin-top: 70px;
         }
         
         .left{
@@ -87,7 +88,7 @@
             border-right: gainsboro 1px solid;
             border-radius: 8px;
             box-shadow: 0px 5px 5px #ccc;
-            height: 120px;
+            height: 150px;
             
         }
 
@@ -139,7 +140,7 @@
 
         .btn-menu:hover{
             width: 100%;
-            height: 44px;
+            height: 40px;
             font-size: 19px;
             font-weight: bold;
         }
@@ -164,7 +165,7 @@
 
         .btn-submenu:hover{
             width: 100%;
-            height: 38px;
+            height: 32px;
             font-size: 14px;
             font-weight: bold;
         }
@@ -185,9 +186,14 @@
         }
 
         .footer{
-            margin-top: 10%;
+            margin-top: 100px;
+            overflow: hidden;
+            left: 0;
+            bottom: 0;
             width: 100%;
             background-color: skyblue;
+            color: white;
+            text-align: center;
         }
 
         @media(max-width:900px){
@@ -205,11 +211,152 @@
             .garis{display: none;}
         }
 
+        .btn-filter{
+            background-color: gainsboro;
+            color: grey;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn-filter:hover{
+            font-size: 14px;
+        }
+
+        .update-rumah{
+            margin: 5px;
+            color: grey;
+            margin-bottom: 5px;
+        }
+
+        .btn-update{
+            color: white;
+            font-size: 14px;
+            transition: width 0.3s, height 0.3s;
+            height: 25px;
+            width: 70px;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        .btn-update:hover{
+            font-size: 16px;
+            height: 30px;
+            width: 75px;
+        }
+
+        .input{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .card{
+            margin: 20px;
+            border-bottom: gainsboro 1px solid;
+            border-top: gainsboro 1px solid;
+            border-right: gainsboro 1px solid;
+            border-radius: 8px;
+            box-shadow: 0px 5px 5px #ccc;
+        }
+
+        .pembayaran{
+            margin: 5px;
+            color: grey;
+            margin-bottom: 5px;
+        }
+
+        .btn-detail{
+            background-color: #ffc107;
+            font-weight: bold;
+            color: white;
+            width: 90%;
+            outline: none;
+            border: none;
+            padding: 5px;
+            transition: width 0.3s, height 0.3s;
+            border-radius: 8px;
+        }
+
+        .btn-detail:hover{
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-pesan{
+            background-color: #5cb85c;
+            font-weight: bold;
+            color: white;
+            width: 90%;
+            font-size: 14px;
+            outline: none;
+            border: none;
+            padding: 5px;
+            transition: width 0.3s, height 0.3s;
+            border-radius: 8px;
+        }
+
+        .btn-pesan:hover{
+            width: 100%;
+            padding: 8px;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div id="lapisan2">
 
+    </div>
+    
+    <div class="container">
+            <div id="side-menucss" class="side-navcss">
+                <div>
+                    <center>
+                    <div style="margin-bottom: 8px; background-color: skyblue">
+                        <a style="text-decoration: none;" href="#home"><font style="font-size: 28px; color: white">Rumah<span>dev</span></font></a>
+                    </div>
+                    <div class="profil-card">
+                        <br>
+                        Administrator <br>   
+                            <img src="<?= base_url('assets/perusahaan/anggota/dandi.jpg') ?>" class="foto-profil" width="75" height="75">
+                            <br>
+                            <div class="profil-name">
+                                Dandi Indra Wijaya
+                                <hr>
+                                Administrator
+                            </div>
+                    </div>
+                        <div>
+                            <button class="btn-menu dropbtn" onclick="myFunction()">Produk</button>
+                        </div>
+                            <div id="myDropdown" class="dropdown-content">
+                                <button class="btn-submenu">Perumahan Elit</button>
+                                <button class="btn-submenu">Perumahan Menengah</button>
+                                <button class="btn-submenu">Apartemen</button>
+                            </div>
+                        <div>
+                            <button class="btn-menu">Konsumen</button>
+                        </div>
+                        <div>
+                            <button class="btn-menu">Pembayaran</button>
+                        </div>
+                        <div>
+                            <button class="btn-menu">Transaksi</button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            
+            <div class="main">
+                @yield('content')
+            </div>
     </div>
     <div class="topnav">
         <span class="open-slidecss">
@@ -229,81 +376,10 @@
           <a href="#about">About</a>
         </div>
     </div>
-
-        <div id="app">
-            <div id="side-menucss" class="side-navcss">
-                <div>
-                    <center>
-                    <div style="margin-bottom: 8px; background-color: skyblue">
-                        <a style="text-decoration: none;" href="#home"><font style="font-size: 28px; color: white">Rumah<span>dev</span></font></a>
-                    </div>
-                    <div class="profil-card">   
-                            <img src="<?= base_url('assets/perusahaan/anggota/dandi.jpg') ?>" class="foto-profil" width="75" height="75">
-                            <br>
-                            <div class="profil-name">
-                                Dandi Indra Wijaya
-                            </div>
-                    </div>
-                        <div>
-                            <button class="btn-menu dropbtn" onclick="myFunction()">Produk</button>
-                        </div>
-                            <div id="myDropdown" class="dropdown-content">
-                                <button class="btn-submenu">Perumahan Elit</button>
-                                <button class="btn-submenu">Perumahan Menengah</button>
-                                <button class="btn-submenu">Apartemen</button>
-                            </div>
-                        <div>
-                            <button class="btn-menu">Pembayaran</button>
-                        </div>
-                        <div>
-                            <button class="btn-menu">Transaksi</button>
-                        </div>
-                    </center>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2 col-md-2 col-lg-2">
-                    <div class="menu">
-                        <center>
-                            <div class="profil-card">   
-                                    <img src="<?= base_url('assets/perusahaan/anggota/dandi.jpg') ?>" class="foto-profil" width="75" height="75">
-                                    <br>
-                                    <div class="profil-name">
-                                        Dandi Indra Wijaya
-                                    </div>
-                            </div>
-                                <div>
-                                    <button class="btn-menu dropbtn" onclick="dropdown()">Produk</button>
-                                </div>
-                                    <div id="Dropdown" class="dropdown-content1">
-                                        <button class="btn-submenu">Perumahan Elit</button>
-                                        <button class="btn-submenu">Perumahan Menengah</button>
-                                        <button class="btn-submenu">Apartemen</button>
-                                    </div>
-                                <div>
-                                    <button class="btn-menu">Pembayaran</button>
-                                </div>
-                                <div>
-                                    <button class="btn-menu">Transaksi</button>
-                                </div>
-                            </center>
-                    </div>
-                </div>
-                   
-                <div class="col-sm-12 col-md-10 col-lg-10">
-                    <div class="content">
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     <div class="footer">
         this is footer
     </div>
-
+        
     <script>
         function openSlideMenu() {
         document.getElementById('side-menucss').style.left = '0';
@@ -323,39 +399,7 @@
         lapisan2.classList.remove('lapisan2');
     })
 
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-            }
-        }}
-
-        function dropdown() {
-            document.getElementById("Dropdown").classList.toggle("show1");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content1");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show1')) {
-                openDropdown.classList.remove('show1');
-            }
-            }
-        }}
+      
 
 
         

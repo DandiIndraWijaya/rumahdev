@@ -31,6 +31,7 @@
                     <th>Telah Bayar</th>
                     <th>Sisa Bayar</th>
                     <th>Tenggat Waktu</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
     
@@ -49,6 +50,9 @@
                         <td>{{ rupiah($d->telah_bayar) }}</td>
                         <td>{{ rupiah($d->sisa_bayar) }}</td>
                         <td>{{ $d->tenggat_waktu }}</td>
+                        <td> <th><form action="" method="post">
+                            <input class="input btn-update" style="background-color: #d9534f;" type="submit" value="Non Aktifkan">    
+                        </form></th></td>
                     </tr>
                 @endforeach
             </tbody>
