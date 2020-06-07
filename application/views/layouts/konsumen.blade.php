@@ -372,8 +372,18 @@
         <a href="#home"><font style="font-size: 28px">Rumah</font><span>dev</span></a>
     </div>
         <div class="topnav-right">
-          <a href="#search">Search</a>
-          <a href="#about">About</a>
+        <?php
+            if(!empty($pengguna)){
+        ?>
+            <a href="{{ base_url('index.php/konsumen/profil') }}">Profil</a>
+            <a href="{{ base_url('index.php/authentication/logout') }}">Logout</a>
+        <?php
+            }else {
+        ?>
+            <a href="{{ base_url('index.php/authentication') }}">Login</a>
+        <?php
+            }
+        ?>
         </div>
     </div>
     <div class="footer">

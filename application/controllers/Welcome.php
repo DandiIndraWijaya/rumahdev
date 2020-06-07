@@ -28,11 +28,12 @@ class Welcome extends CI_Controller {
 		}
 	
 		public function index(){
+			$pengguna = $this->session->userdata('email');
 			$perumelit = $this->mainappmodel->tipe_perumelit();
 			$perummenengah = $this->mainappmodel->tipe_perummenengah();
 			$apartemen = $this->mainappmodel->apartemen();
 	
-			return view('konsumen/home', ['tab' => $this->tab, 'perumelit' => $perumelit, 'perummenengah' => $perummenengah, 'apartemen' => $apartemen]);
+			return view('konsumen/home', ['tab' => $this->tab, 'perumelit' => $perumelit, 'perummenengah' => $perummenengah, 'apartemen' => $apartemen, 'pengguna' => $pengguna]);
 		}
 	
 }

@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.konsumen')
 
 @section('content')
 <?php
