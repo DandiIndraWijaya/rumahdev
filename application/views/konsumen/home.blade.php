@@ -12,7 +12,11 @@
     <center>
         <h3 class="title-home">Pilihan Tempat Tinggal untuk Anda</h3>
     </center>
-   
+    <?php 
+        if(!empty($_SESSION['message'])) {
+            echo $_SESSION['message'];
+        }
+    ?>
     <hr>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
