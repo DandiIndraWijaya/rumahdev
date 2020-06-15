@@ -11,10 +11,21 @@ class PerumahanElit extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('perusahaan/perumahanelitmodel');
+        if(!empty($this->session->userdata('email'))){
+            $this->pengguna = $this->session->userdata('email');
+        }
     }
 
     public function index(){
         return view('index');
+    }
+
+    public function deskripsi(){
+        $tipe = $this->perumahanelitmodel->tipe_rumah();
+        $filter = $this->perumahanelitmodel->filter();
+        $data = $this->perumahanelitmodel->semua();
+        $subfilter = "-";
+        return view('admin/deskripsi/deskripsi', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna, 'tipe' => $tipe]);
     }
 
     public function semua_rumah(){
@@ -23,7 +34,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->semua();
         $subfilter = "-";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
     }
 
     public function tipe_elit(){
@@ -32,7 +43,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_elit();
         $subfilter = "Tipe Elit";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
     }
 
     public function tipe_menengah(){
@@ -41,7 +52,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_menengah();
         $subfilter = "Tipe Menengah";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -51,7 +62,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_murah();
         $subfilter = "Tipe Murah";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->semua_rumah, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -62,7 +73,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->semua_tersedia();
         $subfilter = "-";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
     }
 
     public function tipe_elit_tersedia(){
@@ -71,7 +82,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_elit_tersedia();
         $subfilter = "Tipe Elit";
 
-       return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
+       return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -81,7 +92,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_menengah_tersedia();
         $subfilter = "Tipe Menengah";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -91,7 +102,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_murah_tersedia();
         $subfilter = "Tipe Murah";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_tersedia', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->tersedia, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -102,7 +113,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->semua_dimilki();
         $subfilter = "-";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
     }
 
     public function tipe_elit_dimiliki(){
@@ -111,7 +122,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_elit_dimilki();
         $subfilter = "Tipe Elit";
 
-       return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter]);
+       return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -121,7 +132,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_menengah_dimilki();
         $subfilter = "Tipe Menengah";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -131,7 +142,7 @@ class PerumahanElit extends CI_Controller{
         $data = $this->perumahanelitmodel->tipe_murah_dimilki();
         $subfilter = "Tipe Murah";
 
-        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter]);
+        return view('perusahaan/data_perumahan/perumahan_elit/data_perumahanelit_dimiliki', ['data' => $data, 'title' => $this->title, 'filter' => $filter, 'c_filter' => $this->dimiliki, 'subfilter' => $subfilter, 'pengguna' => $this->pengguna]);
         
     }
 
@@ -140,7 +151,7 @@ class PerumahanElit extends CI_Controller{
         $filter = $this->perumahanelitmodel->filter();
         $tipe_rumah = $this->perumahanelitmodel->tipe_rumah();
 
-        return view('perusahaan/data_perumahan/perumahan_elit/update_data_perumahanelit', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah]);
+        return view('perusahaan/data_perumahan/perumahan_elit/update_data_perumahanelit', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah, 'pengguna' => $this->pengguna]);
     }
 
     //Tambah rumah
@@ -165,7 +176,7 @@ class PerumahanElit extends CI_Controller{
         $tipe_rumah = $this->perumahanelitmodel->tipe_rumah();
 
         
-        return view('perusahaan/data_perumahan/perumahan_elit/update_data_perumahanelit', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah, 'hasil_cari' => $hasil_cari, 'kode' => $kode]);
+        return view('perusahaan/data_perumahan/perumahan_elit/update_data_perumahanelit', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah, 'hasil_cari' => $hasil_cari, 'kode' => $kode, 'pengguna' => $this->pengguna]);
     }
 
     //Update rumah

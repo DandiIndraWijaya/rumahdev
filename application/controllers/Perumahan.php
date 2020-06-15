@@ -72,8 +72,11 @@ class Perumahan extends CI_Controller{
         $kode_rumah = $this->mainappmodel->kode_rumah_elit();
         $perumelit = "Perumahan Elit";
         $tabel = 'perumahan_elit';
-
-        return view('konsumen/detail_perumahan',['tab' => $this->tab, 'tipe' => $tipe, 'title' => $title, 'pengguna' => $this->pengguna, 'kode' => $kode_rumah, 'perumahan' => $perumelit, 'tabel' => $tabel]);
+        $stok[0] = $this->mainappmodel->stok_elit();
+        $stok[1] = $this->mainappmodel->stok_menengah();
+        $stok[2] = $this->mainappmodel->stok_murah();
+        
+        return view('konsumen/detail_perumahan',['tab' => $this->tab, 'tipe' => $tipe, 'title' => $title, 'pengguna' => $this->pengguna, 'kode' => $kode_rumah, 'perumahan' => $perumelit, 'tabel' => $tabel, 'stok' => $stok]);
     }
 }
 

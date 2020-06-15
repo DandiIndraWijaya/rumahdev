@@ -34,6 +34,24 @@ class MainAppModel extends CI_Model{
         return $this->db->query("SELECT email FROM pemesanan WHERE email = '$email' and item = '$item'")->row_array();
     }
 
+    function stok_elit(){
+        $query = $this->db->query("SELECT COUNT(*) as stok FROM perumahan_elit, tipe_perumahan_elit WHERE id_tipe = 1 AND id_tipe = tipe_perumahan_elit.id AND kode NOT IN (SELECT kode_item FROM transaksi) OR kode IN (SELECT kode_item FROM transaksi WHERE aktif = 0)");
+        $result = $query->row_array();
+        return $result['stok'];
+    }
+
+    function stok_menengah(){
+        $query = $this->db->query("SELECT COUNT(*) as stok FROM perumahan_elit, tipe_perumahan_elit WHERE id_tipe = 2 AND id_tipe = tipe_perumahan_elit.id AND kode NOT IN (SELECT kode_item FROM transaksi) OR kode IN (SELECT kode_item FROM transaksi WHERE aktif = 0)");
+        $result = $query->row_array();
+        return $result['stok'];
+    }
+
+    function stok_murah(){
+        $query = $this->db->query("SELECT COUNT(*) as stok FROM perumahan_elit, tipe_perumahan_elit WHERE id_tipe = 3 AND id_tipe = tipe_perumahan_elit.id AND kode NOT IN (SELECT kode_item FROM transaksi) OR kode IN (SELECT kode_item FROM transaksi WHERE aktif = 0)");
+        $result = $query->row_array();
+        return $result['stok'];
+    }
+
     function pesan($email, $kode, $tipe, $perumahan){
         $data = [
             'email' => $email,

@@ -9,20 +9,23 @@ class Konsumen extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('perusahaan/konsumenmodel');
+        if(!empty($this->session->userdata('email'))){
+            $this->pengguna = $this->session->userdata('email');
+        }
     }
 
     public function index(){
         $filter = $this->konsumenmodel->filter();
         $konsumen = $this->konsumenmodel->konsumen();
 
-        return view('perusahaan/konsumen/data_konsumen', ['title' => $this->title, 'filter' => $filter, 'c_filter' => $this->data, 'data' => $konsumen]);
+        return view('perusahaan/konsumen/data_konsumen', ['title' => $this->title, 'filter' => $filter, 'c_filter' => $this->data, 'data' => $konsumen, 'pengguna' => $this->pengguna]);
     }
 
      //Update data perumahan elit
      public function update_konsumen(){
         $filter = $this->konsumenmodel->filter();
         
-        return view('perusahaan/konsumen/update_data_konsumen', ['title' => $this->title, 'filter' => $filter, ]);
+        return view('perusahaan/konsumen/update_data_konsumen', ['title' => $this->title, 'filter' => $filter, 'pengguna' => $this->pengguna]);
     }
 
     //Tambah rumah
@@ -46,7 +49,7 @@ class Konsumen extends CI_Controller{
         $hasil_cari = $this->perumahanmenengahmodel->cari_rumah($kode);
         $tipe_rumah = $this->perumahanmenengahmodel->tipe_rumah();
 
-        return view('perusahaan/data_perumahan/perumahan_menengah/update_data_perumahanmenengah', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah, 'hasil_cari' => $hasil_cari, 'kode' => $kode]);
+        return view('perusahaan/data_perumahan/perumahan_menengah/update_data_perumahanmenengah', ['title' => $this->title, 'filter' => $filter, 'tipe_rumah' => $tipe_rumah, 'hasil_cari' => $hasil_cari, 'kode' => $kode, 'pengguna' => $this->pengguna]);
     }
 
     //Update rumah
